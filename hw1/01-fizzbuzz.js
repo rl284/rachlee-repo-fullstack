@@ -26,3 +26,21 @@ Input: n = 15
 Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"]
 
 **/
+
+function fizzbuzz(n) {
+  let fizz_arr = [];
+  for (let i = 1; i < n + 1; i++) {
+    let input = String(i);
+    if (i % 3 == 0) input = "Fizz";
+    if (i % 5 == 0) {
+      if (input == "Fizz") input = "FizzBuzz";
+      else input = "Buzz";
+    }
+    fizz_arr.push(input);
+  }
+  return fizz_arr;
+}
+
+console.log(fizzbuzz(3));
+console.log(fizzbuzz(5));
+console.log(fizzbuzz(15));
