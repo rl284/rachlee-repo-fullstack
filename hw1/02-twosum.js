@@ -22,3 +22,24 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 
 **/
+
+function twosums(nums, target) {
+  let out1 = 0,
+    out2 = 0;
+  for (const n1 of nums) {
+    for (const n2 of nums) {
+      if (n1 + n2 == target && out2 != out1) {
+        return [out1, out2];
+      }
+      out2++;
+    }
+    out1++;
+    out2 = 0;
+  }
+}
+let example_num = [2, 7, 11, 15];
+console.log(twosums(example_num, 9));
+example_num = [3, 2, 4];
+console.log(twosums(example_num, 6));
+example_num = [3, 3];
+console.log(twosums(example_num, 6));
