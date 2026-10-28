@@ -20,37 +20,36 @@ const server = http.createServer((req, res) => {
     "cookie",
     "other",
   ];
-  if (req.method === "GET" && req.url === "/") {
+  if (req.url === "/") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("Node Routing Exercise");
     res.end();
-  } else if (req.method === "GET" && req.url === "/welcome") {
+  } else if (req.url === "/welcome") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("Hi, user.");
     res.end();
-  } else if (req.method === "GET" && req.url === "/redirect") {
+  } else if (req.url === "/redirect") {
     res.writeHead(302, { Location: "/redirected" });
     res.end();
-  } else if (req.method === "GET" && req.url === "/redirected") {
+  } else if (req.url === "/redirected") {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.write("a message of your choice");
     res.end();
-  } else if (req.method === "GET" && req.url === "/cache") {
+  } else if (req.url === "/cache") {
     res.writeHead(200, {
       "Content-Type": "text/html",
       "Cache-Control": "max-age=86400",
     });
     res.write("<h1>this resource was cached</h1>");
     res.end();
-  } else if (req.method === "GET" && req.url === "/cookie") {
+  } else if (req.url === "/cookie") {
     res.writeHead(200, {
-      "Content-Type": "text/html",
+      "Content-Type": "text/plain",
       "Set-Cookie": ["hello=world"],
     });
     res.write("cookies… yummm");
     res.end();
   } else {
-    console.log(`${req.method} - ${req.url}`);
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.write("404: Page not found");
     res.end();

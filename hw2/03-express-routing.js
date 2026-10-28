@@ -56,7 +56,7 @@ app.get("/cache", (req, res) => {
 
 app.get("/cookie", (req, res) => {
   res.status(200);
-  res.set({ "Content-Type": "text/html", "Set-Cookie": ["hello=world"] });
+  res.set({ "Content-Type": "text/plain", "Set-Cookie": ["hello=world"] });
   res.send("cookies… yummm");
 });
 

@@ -5,31 +5,49 @@ function calculateChange(price) {
   if (price < 0) return "$0.00";
   if (price > 100) return "$" + price + " ==> Error: the number is too large";
   let rem = price % 1;
-  let dollars,
-    quarts,
-    dimes,
-    nickles,
-    pennies = 1;
+  const dollars = Math.floor(price);
+  let remainder = (price - dollars) * 100;
+  const quarters = Math.floor(remainder / 25);
+  remainder -= quarters * 25;
+  const dimes = Math.floor(remainder / 10);
+  remainder -= dimes * 10;
+  const nickles = Math.floor(remainder / 5);
+  remainder -= nickles * 5;
+  remainder = Math.floor(remainder);
   string = "$" + price + " ==> ";
-  if (price - rem > 0) {
-    dollars = price - rem;
-    string = string + dollars + "dollars, ";
+  let comma = false;
+  let name = " dollars";
+  if (dollars != 0) {
+    if (dollars == 1) name = " dollar";
+    string = string + dollars + name;
+    comma = true;
   }
-  if (rem > 0.25) {
-    quarts = (rem / 0.25).floor;
-    string = string + quarts + " quarters,";
+  if (quarters != 0) {
+    name = " quarters";
+    if (quarters == 1) name = " quarter";
+    if (comma) string = string + ", ";
+    string = string + quarters + name;
+    comma = true;
   }
-  if (rem - 0.25 * quarts >= 0.1) {
-    dimes = (rem / 0.1).floor;
-    string = string + dimes + " dimes";
+  if (dimes != 0) {
+    name = " dimes";
+    if (dimes == 1) name = " dime";
+    if (comma) string = string + ", ";
+    string = string + dimes + name;
+    comma = true;
   }
-  if (rem - 0.25 * quarts - 0.1 * dimes >= 0.5) {
-    nickles = 1;
-    string = string + nickles + " nickles";
+  if (nickles != 0) {
+    name = " nickles";
+    if (nickles == 1) name = " nickle";
+    if (comma) string = string + ", ";
+    string = string + nickles + name;
+    comma = true;
   }
-  if (rem - 0.25 * quarts - 0.1 * dimes - nickles * 0.5 > 0) {
-    pennies = rem - 0.25 * quarts - 0.1 * dimes - nickles * 0.5;
-    string = string + pennies + " pennies";
+  if (remainder != 0) {
+    name = " pennies";
+    if (remainder == 1) name = " penny";
+    if (comma) string = string + ", ";
+    string = string + remainder + name;
   }
   return string;
 }
