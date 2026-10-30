@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5001;
 
+<<<<<<< HEAD
 app.use(
   express.urlencoded({
     extended: true,
@@ -9,6 +10,9 @@ app.use(
 );
 
 // http://localhost:5001/form should return a form with input elements for username, email, and submit button
+=======
+// http://localhost:5001/form should return a form with input elements for username, email, comments, newsletter sign up, and submit button.
+>>>>>>> bc6d9d7bb634dbf314bcf1e4a3240edc5f6c58b9
 
 app.get("/form", (req, res) => {
   res.set({ "Content-Type": "text/html" });
